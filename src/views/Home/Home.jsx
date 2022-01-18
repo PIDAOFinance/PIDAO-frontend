@@ -1,11 +1,12 @@
-import { useDispatch,useSelector } from "react-redux";
-import { Paper, Grid, Typography, Box, Zoom,Button } from "@material-ui/core";
+import { useDispatch, useSelector } from "react-redux";
+import { Paper, Grid, Typography, Box, Zoom, Button } from "@material-ui/core";
 import { formatCurrency, getDisplayBalance, trim } from "../../helpers";
-import {useEffect,useCallback, useMemo} from 'react'
+import { useEffect, useCallback, useMemo } from 'react'
 import { useWeb3Context } from "src/hooks/web3Context";
 import "./home.scss";
 import { Skeleton } from "@material-ui/lab";
-import Logoimg from '../../assets/ohm/logo@2x.png'
+import Logoimg from '../../assets/pepe.png'
+// import Logoimg from '../../assets/ohm/logo@2x.png'
 import Bg from '../../assets/ohm/bg.png'
 import { Link } from "react-router-dom";
 import TimeCountdown from "src/components/TimeCountdown";
@@ -35,31 +36,31 @@ import { changeApproval, changeStake } from "../../slices/IdoThunk";
 
 
 function Home() {
-  const { provider, address, connected, connect, chainID,disconnect } = useWeb3Context();
+  const { provider, address, connected, connect, chainID, disconnect } = useWeb3Context();
   const [menu, setmenu] = useState(false);
   const [isHovering, setIsHovering] = useState(false);
   const [isConnected, setConnected] = useState(connected);
   const [anchorEl, setAnchorEl] = useState(null);
-  const [delayShow,setDelayShow] = useState(false)
+  const [delayShow, setDelayShow] = useState(false)
 
   // const stakedTotal= useSelector(state => {
   //   // console.error(state.app?.circVal)
-    
+
   //   return state?.app?.circVal ? getDisplayBalance(state?.app?.circVal,9):null;
   // });
   const pendingTransactions = useSelector(state => {
     return state.pendingTransactions;
   });
-  
+
   // const treasuryMarketValue = useSelector(state => {
   //   return state.app.treasuryMarketValue;
   // });
   let buttonText = "Connect Wallet";
   let clickFunc = connect;
 
-  const onComplete = useCallback(()=>{
-    setDelayShow(true) 
-  },[])
+  const onComplete = useCallback(() => {
+    setDelayShow(true)
+  }, [])
   const handleClick = event => {
     setAnchorEl(anchorEl ? null : event.currentTarget);
   };
@@ -77,53 +78,53 @@ function Home() {
   const open = Boolean(anchorEl);
   const id = open ? "ohm-popper-pending" : undefined;
 
-  const primaryColor =  "#ffe300";
+  const primaryColor = "#ffe300";
   const buttonStyles =
     "pending-txn-container" + (isHovering && pendingTransactions.length > 0 ? " hovered-button" : "");
 
   const idoBalance = useSelector(state => {
-    if(state.account.ido){
+    if (state.account.ido) {
       return state.account.ido.idoBalance
     }
     return null
   });
   const busdAmount = useSelector(state => {
-    if(state.account.ido){
+    if (state.account.ido) {
       return state.account.ido.busdAmount
     }
     return null
   });
-  
+
   const isPay = useSelector(state => {
-    if(state.account.ido){
+    if (state.account.ido) {
       return state.account.ido.isPay
     }
     return null
   });
-  
-  const openStartTimes=useMemo(()=>{
+
+  const openStartTimes = useMemo(() => {
     return 1636113600000
     // return Date.now() + 5000
-  },[])
+  }, [])
 
   const isOpen = useMemo(() => {
     return Date.now() > openStartTimes
-  },[delayShow,openStartTimes]);
+  }, [delayShow, openStartTimes]);
   // const stakingAPY = useSelector(state=>{
   //   return state.app.stakingAPY
   // })
-  
-  const openIsPayTime = useMemo(()=>{
-    return Date.now() < (1636113600000 + 86400000) 
-  },[])
-  const openOverTimes=useMemo(()=>{
-    return 1636372800000 
-  },[isOpen])
-  const isOver = useMemo(()=>{
+
+  const openIsPayTime = useMemo(() => {
+    return Date.now() < (1636113600000 + 86400000)
+  }, [])
+  const openOverTimes = useMemo(() => {
+    return 1636372800000
+  }, [isOpen])
+  const isOver = useMemo(() => {
     return Date.now() > openOverTimes
-  },[Date.now(),openOverTimes])
-  
-  
+  }, [Date.now(), openOverTimes])
+
+
   useEffect(() => {
     if (address) {
       connect();
@@ -146,13 +147,13 @@ function Home() {
   const [Popup, setPopup] = useState(false);
   const PopupClick = () => {
     let timeId = null;
-    if(isPay === true){
+    if (isPay === true) {
       setPopup(false)
       return
     }
-    if(isConnected){
+    if (isConnected) {
       setPopup(!Popup)
-    }else{
+    } else {
       clickFunc()
     }
   }
@@ -161,9 +162,7 @@ function Home() {
   return <div className="home_gd">
 
     <div className="headBox">
-      <span style={{ fontSize: 48 }}>
-        🐸
-      </span>
+      <img src={Logoimg} alt="" width="60" height="51" className="logo2" />
       <ul className="uls">
         {/* <li className="lis"><a className="a" href="#">PepeDAO Pro</a></li> */}
         <li className="lis"><a className="a" href="#">Stake</a></li>
@@ -172,19 +171,19 @@ function Home() {
         <li className="lis"><a className="a" href="#">Get Involved</a></li>
       </ul>
       <div>
-      <Button
-        className={buttonStyles}
-        variant="contained"
-        color="secondary"
-        size="large"
-        style={pendingTransactions.length > 0 ? { color: primaryColor } : {}}
-        onClick={clickFunc}
-        onMouseOver={() => setIsHovering(true)}
-        onMouseLeave={() => setIsHovering(false)}
-        key={1}
-      >
-        {buttonText}
-      </Button>
+        <Button
+          className={buttonStyles}
+          variant="contained"
+          color="secondary"
+          size="large"
+          style={pendingTransactions.length > 0 ? { color: primaryColor } : {}}
+          onClick={clickFunc}
+          onMouseOver={() => setIsHovering(true)}
+          onMouseLeave={() => setIsHovering(false)}
+          key={1}
+        >
+          {buttonText}
+        </Button>
         {/* <a href="https://PepeDAO.gitbook.io/homepage/contracts/audits/peckshield-audit-report" target="_blank"><img src={ShenJiImg1} alt="" className="shenji" /></a>
         <a href="https://PepeDAO.gitbook.io/homepage/contracts/audits/omniscia-audit-report" target="_blank"><img src={ShenJiImg2} alt="" className="shenji" /></a> */}
       </div>
@@ -197,7 +196,7 @@ function Home() {
 
     </div>
     <div className="boodyBox fxColumn">
-      {/* <img src={Bg} alt="" className="bg" /> */}
+      <img src={Logoimg} alt="" className="bg" />
       <div className="titleColor">
         The Decentralized
       </div>
@@ -231,20 +230,20 @@ function Home() {
       <div className="fxBetween2 mgTop">
         <div className="fxColumn2">
           <div className="minTatleColor">Total Staked</div>
-          <div style={{minWidth:80,textAlign:'center'}} className="valueColor">
+          <div style={{ minWidth: 80, textAlign: 'center' }} className="valueColor">
             {<Skeleton type="text" />}
-            </div>
+          </div>
         </div>
         <div className="fxColumn2 mgLf">
           <div className="minTatleColor">Treasury Balance</div>
-          <div style={{minWidth:80,textAlign:'center'}}  className="valueColor">
+          <div style={{ minWidth: 80, textAlign: 'center' }} className="valueColor">
             {<Skeleton type="text" />}
           </div>
         </div>
         <div className="fxColumn2 mgLf">
           <div className="minTatleColor">Current APY</div>
-          <div style={{minWidth:80,textAlign:'center'}}  className="valueColor">
-          {<Skeleton type="text" />}
+          <div style={{ minWidth: 80, textAlign: 'center' }} className="valueColor">
+            {<Skeleton type="text" />}
           </div>
         </div>
       </div>
@@ -257,11 +256,11 @@ function Home() {
       <div className="moban" onClick={() => ShowhideClick()} >
         <div className="CaiDanlieBiao">
           <img src={Logoimg} alt="" className="logo2" />
-          <div className="lis2"><a target="_blank" className="a" href="https://PepeDAO.gitbook.io/homepage/whitepapers/PepeDAO-pro">PepeDAO Pro</a></div>
-          <div className="lis2"><a className="a" href="/stake">Stake</a></div>
-          <div className="lis2"><a className="a" href="/bonds">Bond</a></div>
-          <div className="lis2"><a target="_blank" className="a" href="https://PepeDAO.gitbook.io/homepage/PepeDAO-finance/faqs">FAQs</a></div>
-          <div className="lis2"><a target="_blank" className="a" href="https://PepeDAO.gitbook.io/homepage/community/governance">Get Involved</a></div>
+          <div className="lis2"><a target="_blank" className="a" href="#">PepeDAO Pro</a></div>
+          <div className="lis2"><a className="a" href="#">Stake</a></div>
+          <div className="lis2"><a className="a" href="#">Bond</a></div>
+          <div className="lis2"><a target="_blank" className="a" href="#">FAQs</a></div>
+          <div className="lis2"><a target="_blank" className="a" href="#">Get Involved</a></div>
           {/* <a href="https://github.com/peckshield/publications/blob/master/audit_reports/PeckShield-Audit-Report-OlympusDAO-v1.0.pdf" target="_blank" ><img src={ShenJiImg1} alt="" className="shenji2" /></a>
           <a href="https://omniscia.io/olympusdao-algorithmic-currency-protocol/" target="_blank"><img src={ShenJiImg2} alt="" className="shenji3" /></a> */}
         </div>
@@ -272,8 +271,8 @@ function Home() {
     {Popup ?
       <div className="Max_Box">
         <div className="Min_Box">
-        <div onClick={() => PopupClick()} className="close"><img src={GuanImg} alt="" width="14px"/></div>
-        <PAYSTATUS isPay={isPay} openIsPayTime={openIsPayTime} isOpen={isOpen} busdAmount={busdAmount} idoBalance={idoBalance}/>
+          <div onClick={() => PopupClick()} className="close"><img src={GuanImg} alt="" width="14px" /></div>
+          <PAYSTATUS isPay={isPay} openIsPayTime={openIsPayTime} isOpen={isOpen} busdAmount={busdAmount} idoBalance={idoBalance} />
         </div>
       </div>
       : null}
@@ -285,36 +284,36 @@ function Home() {
 export default Home;
 
 
-const PAYSTATUS=({idoBalance,isPay,isOpen,busdAmount,openIsPayTime})=>{
+const PAYSTATUS = ({ idoBalance, isPay, isOpen, busdAmount, openIsPayTime }) => {
   console.error({
-    sss:isPay === true,
+    sss: isPay === true,
     isPay
   })
-  if(openIsPayTime === true){
-    return <PadingBaiMingDan_Box title={'ITO whitelist updating, please stay tuned with notice in the telegram group'}/>
+  if (openIsPayTime === true) {
+    return <PadingBaiMingDan_Box title={'ITO whitelist updating, please stay tuned with notice in the telegram group'} />
   }
-  if(idoBalance === null || isOpen === null){
-    return <Pading_Box/>
-  }else if(isOpen === false){
-    return <PadingBaiMingDan_Box title={''}/>
-  }else if(isPay === true){
-    
-    return <PadingBaiMingDan_Box title={'Purchased'}/>
-  }else if(idoBalance >0){
-    return <Inp_Box busdAmount={busdAmount} idoBalance={idoBalance}/>
-  }else {
-    return <PadingBaiMingDan_Box/>
+  if (idoBalance === null || isOpen === null) {
+    return <Pading_Box />
+  } else if (isOpen === false) {
+    return <PadingBaiMingDan_Box title={''} />
+  } else if (isPay === true) {
+
+    return <PadingBaiMingDan_Box title={'Purchased'} />
+  } else if (idoBalance > 0) {
+    return <Inp_Box busdAmount={busdAmount} idoBalance={idoBalance} />
+  } else {
+    return <PadingBaiMingDan_Box />
   }
 }
 //输入框组件
-function Inp_Box({idoBalance,busdAmount}) {
-  const { provider, address, connected, connect, chainID,disconnect } = useWeb3Context();
+function Inp_Box({ idoBalance, busdAmount }) {
+  const { provider, address, connected, connect, chainID, disconnect } = useWeb3Context();
   const dispatch = useDispatch();
 
   const pendingTransactions = useSelector(state => {
     return state.pendingTransactions;
   });
-  
+
   const stakeAllowance = useSelector(state => {
     return state.account.ido && state.account.ido.idoAllowance;
   });
@@ -332,7 +331,7 @@ function Inp_Box({idoBalance,busdAmount}) {
     // eslint-disable-next-line no-restricted-globals
     await dispatch(changeStake({ address, action, provider, networkID: chainID }));
   };
-  const onClick=()=>{
+  const onClick = () => {
 
   }
   return <MinInp_Box>
@@ -348,18 +347,18 @@ function Inp_Box({idoBalance,busdAmount}) {
       <input type="text" placeholder={`${busdAmount}BUSD`} disabled className="InpStyle" />
     </div>
     <div className="Content_Box3">
-    {/* PepeDAO project will launch on 12:00 8th Nov. 2021, you will be able to claim your PID token manually on the website.  */}
+      {/* PepeDAO project will launch on 12:00 8th Nov. 2021, you will be able to claim your PID token manually on the website.  */}
     </div>
 
     {address && hasAllowance() ? (
-      <div onClick={onClick} 
-      disabled={isPendingTxn(pendingTransactions, "staking")}
+      <div onClick={onClick}
+        disabled={isPendingTxn(pendingTransactions, "staking")}
         onClick={() => {
           onChangeStake("stake");
         }}
-      className="Content_Box4">
+        className="Content_Box4">
         {txnButtonText(pendingTransactions, "buy", "Purchase")}
-    </div>
+      </div>
     ) : (
       <Button
         className="stake-button"
@@ -373,7 +372,7 @@ function Inp_Box({idoBalance,busdAmount}) {
         {txnButtonText(pendingTransactions, "approve", "Approve")}
       </Button>
     )}
-    
+
   </MinInp_Box>
 }
 
@@ -386,16 +385,16 @@ const MinInp_Box = styled.div`
 `
 
 //判定等待组件
-function Pading_Box (){
-  return<PadingBox>
-    <PandingImg src={PdImg}/>
+function Pading_Box() {
+  return <PadingBox>
+    <PandingImg src={PdImg} />
     <PandingContent>Evaluating, please wait a moment～</PandingContent>
   </PadingBox>
 }
 //判定白名单
-function PadingBaiMingDan_Box ({title="You are not on the whitelist"}){
-  return<PadingBox>
-    <PandingImg src={WuImg}/>
+function PadingBaiMingDan_Box({ title = "You are not on the whitelist" }) {
+  return <PadingBox>
+    <PandingImg src={WuImg} />
     <PandingContent>{title}</PandingContent>
   </PadingBox>
 }

@@ -106,7 +106,7 @@
 }
 
 .titleColor {
-    color: #66c52a;
+    color: #53b615;
     font-size: 48px;
     font-weight: 700;
     margin-top: 15px;
@@ -203,11 +203,12 @@
 }
 
 .bg {
+    opacity: 1;
     width: 700px;
     position: absolute;
     border-radius: 50%;
     // box-shadow: 0px 0px 20px 20px rgba(168, 141, 19, 0.4);
-    right: -5%;
+    right: -18%;
     top: 0;
     z-index: -1;
     @media (max-width: 1000px) {
@@ -217,7 +218,8 @@
         display: none;
     }
     display: block;
-    animation: rotate 400s linear infinite;
+    transform: rotate(-15deg);
+    // animation: rotate 400s linear infinite;
     @keyframes rotate {
         0% {
             transform: rotateZ(0deg);
