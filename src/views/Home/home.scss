@@ -83,7 +83,7 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    background-color: #1f232d;
+    background-color: #1f5490;
     overflow: hidden;
 }
 @media screen and (max-width: 1000px) {
@@ -106,7 +106,7 @@
 }
 
 .titleColor {
-    color: #ffe300;
+    color: #66c52a;
     font-size: 48px;
     font-weight: 700;
     margin-top: 15px;
@@ -130,7 +130,7 @@
     border-radius: 5px;
     text-align: center;
     line-height: 45px;
-    background-color: #ffe300;
+    background-color: #509624;
     font-family: Arial;
     font-size: 16px;
     font-weight: bold;
@@ -140,7 +140,7 @@
 }
 
 .btnBox_1:hover {
-    background-color: #ffe30030;
+    background-color: #50962430;
 }
 
 .btnBox_2 {
@@ -169,13 +169,13 @@
 //     font-family: Arial;
 //     font-size: 24px;
 //     font-weight: bold;
-//     color: #ffe300;
+//     color: #509624;
 // }
 .valueColor {
     font-family: Arial;
     font-size: 20px;
     font-weight: bold;
-    color: #ffe300;
+    color: #509624;
 }
 
 .minTatleColor {
@@ -315,7 +315,7 @@
 }
 
 .a:hover {
-    color: #ffe300;
+    color: #509624;
 }
 .a2:hover {
     color: #ffffff;
@@ -409,12 +409,12 @@
     justify-content: center;
     align-items: center;
     border-radius: 5px;
-    border: solid 1px #ffe300;
+    border: solid 1px #509624;
     font-weight: 600;
     font-stretch: normal;
     font-style: normal;
     letter-spacing: normal;
-    color: #ffe300;
+    color: #509624;
     cursor: pointer;
 }
 .ZhiFuBtn:hover {
@@ -483,7 +483,7 @@
     height: 65px;
     padding: 0px 20px;
     border-radius: 5px;
-    background-color: #ffe300;
+    background-color: #509624;
     color: #1f232d;
     font-weight: 600;
     display: flex;
@@ -492,7 +492,7 @@
     cursor: pointer;
 }
 .Content_Box4:hover {
-    background-color: #ffe30070;
+    background-color: #50962470;
 }
 .close {
     cursor: pointer;

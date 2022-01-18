@@ -42,18 +42,18 @@ function Home() {
   const [anchorEl, setAnchorEl] = useState(null);
   const [delayShow,setDelayShow] = useState(false)
 
-  const stakedTotal= useSelector(state => {
-    // console.error(state.app?.circVal)
+  // const stakedTotal= useSelector(state => {
+  //   // console.error(state.app?.circVal)
     
-    return state?.app?.circVal ? getDisplayBalance(state?.app?.circVal,9):null;
-  });
+  //   return state?.app?.circVal ? getDisplayBalance(state?.app?.circVal,9):null;
+  // });
   const pendingTransactions = useSelector(state => {
     return state.pendingTransactions;
   });
   
-  const treasuryMarketValue = useSelector(state => {
-    return state.app.treasuryMarketValue;
-  });
+  // const treasuryMarketValue = useSelector(state => {
+  //   return state.app.treasuryMarketValue;
+  // });
   let buttonText = "Connect Wallet";
   let clickFunc = connect;
 
@@ -109,9 +109,9 @@ function Home() {
   const isOpen = useMemo(() => {
     return Date.now() > openStartTimes
   },[delayShow,openStartTimes]);
-  const stakingAPY = useSelector(state=>{
-    return state.app.stakingAPY
-  })
+  // const stakingAPY = useSelector(state=>{
+  //   return state.app.stakingAPY
+  // })
   
   const openIsPayTime = useMemo(()=>{
     return Date.now() < (1636113600000 + 86400000) 
@@ -161,13 +161,15 @@ function Home() {
   return <div className="home_gd">
 
     <div className="headBox">
-      <img src={Logoimg} alt="" className="logo" />
+      <span style={{ fontSize: 48 }}>
+        🐸
+      </span>
       <ul className="uls">
-        <li className="lis"><a className="a" href="https://pidao.gitbook.io/homepage/whitepapers/pidao-pro">PIDAO Pro</a></li>
-        <li className="lis"><a className="a" href="/stake">Stake</a></li>
-        <li className="lis"><a className="a" href="/bonds">Bond</a></li>
-        <li className="lis"><a className="a" href="https://pidao.gitbook.io/homepage/pidao-finance/faqs">FAQs</a></li>
-        <li className="lis"><a className="a" href="https://pidao.gitbook.io/homepage/community/governance">Get Involved</a></li>
+        {/* <li className="lis"><a className="a" href="#">PepeDAO Pro</a></li> */}
+        <li className="lis"><a className="a" href="#">Stake</a></li>
+        <li className="lis"><a className="a" href="#">Bond</a></li>
+        <li className="lis"><a className="a" href="#">FAQs</a></li>
+        <li className="lis"><a className="a" href="#">Get Involved</a></li>
       </ul>
       <div>
       <Button
@@ -183,8 +185,8 @@ function Home() {
       >
         {buttonText}
       </Button>
-        {/* <a href="https://pidao.gitbook.io/homepage/contracts/audits/peckshield-audit-report" target="_blank"><img src={ShenJiImg1} alt="" className="shenji" /></a>
-        <a href="https://pidao.gitbook.io/homepage/contracts/audits/omniscia-audit-report" target="_blank"><img src={ShenJiImg2} alt="" className="shenji" /></a> */}
+        {/* <a href="https://PepeDAO.gitbook.io/homepage/contracts/audits/peckshield-audit-report" target="_blank"><img src={ShenJiImg1} alt="" className="shenji" /></a>
+        <a href="https://PepeDAO.gitbook.io/homepage/contracts/audits/omniscia-audit-report" target="_blank"><img src={ShenJiImg2} alt="" className="shenji" /></a> */}
       </div>
       {/* 移动端顶部列表 */}
       <div className="CaiDanImgBox">
@@ -195,7 +197,7 @@ function Home() {
 
     </div>
     <div className="boodyBox fxColumn">
-      <img src={Bg} alt="" className="bg" />
+      {/* <img src={Bg} alt="" className="bg" /> */}
       <div className="titleColor">
         The Decentralized
       </div>
@@ -214,56 +216,52 @@ function Home() {
 
       {/* <div style={{ display: "flex", justifyContent: "center", }}>
        
-       <a href="https://medium.com/@PIDAOFinance/initial-telegram-offering-the-pidao-fair-launch-event-fafc6ec009aa" style={{ color: "#fff" }} target="_blank">ITO Rules</a>
+       <a href="https://medium.com/@PepeDAOFinance/initial-telegram-offering-the-PepeDAO-fair-launch-event-fafc6ec009aa" style={{ color: "#fff" }} target="_blank">ITO Rules</a>
         <div style={{ width: 20 }} />
         <a href="https://docs.google.com/forms/d/e/1FAIpQLSfM6zyJyhaOcp-QmOzZmleU4wVthPP13x-HamiKO5cMiTwHUw/viewform" style={{ color: "#fff" }} target="_blank">Apply Now</a>
       
       </div> */}
       <div className="contentStyle">
-        PIDAO is a decentralized reserve currency protocol based on the PID token and aims at building a community-owned decentralized financial infrastructure for the crypto world.
+        PepeDAO is a decentralized reserve currency protocol based on the FROG token and aims at building a community-owned decentralized financial infrastructure for the crypto world.
       </div>
       <div className="fxBetween">
-        <a href="/stake" className="btnBox_1">Enter App</a>
-        <a href="https://pidao.gitbook.io/homepage/" className="btnBox_2 a" target="_blank">Documentation</a>
+        <a href="#" className="btnBox_1">Enter App</a>
+        <a href="#" className="btnBox_2 a" target="_blank">Documentation</a>
       </div>
       <div className="fxBetween2 mgTop">
         <div className="fxColumn2">
           <div className="minTatleColor">Total Staked</div>
           <div style={{minWidth:80,textAlign:'center'}} className="valueColor">
-            {stakedTotal ? trim(stakedTotal, 2): <Skeleton type="text" />}
+            {<Skeleton type="text" />}
             </div>
         </div>
         <div className="fxColumn2 mgLf">
           <div className="minTatleColor">Treasury Balance</div>
           <div style={{minWidth:80,textAlign:'center'}}  className="valueColor">
-            {treasuryMarketValue ? formatCurrency(treasuryMarketValue, 2) : <Skeleton type="text" />}
+            {<Skeleton type="text" />}
           </div>
         </div>
         <div className="fxColumn2 mgLf">
           <div className="minTatleColor">Current APY</div>
           <div style={{minWidth:80,textAlign:'center'}}  className="valueColor">
-          {stakingAPY ? `${trim(stakingAPY*100, 2)}%` : <Skeleton type="text" />}
+          {<Skeleton type="text" />}
           </div>
         </div>
       </div>
     </div>
     {/* 底部链接栏 */}
     <div className="bottomBor a">
-      <a href="https://twitter.com/PIDAOFinance" target="_blank" className="bottomImgs a2"><img src={img1_1} alt="" className="bottomImgs2" /></a>
-      <a href="https://github.com/PIDAOFinance" target="_blank" className="bottomImgs a2"><img src={img1_2} alt="" className="bottomImgs2" /></a>
-      <a href="https://discord.com/invite/hPRwxePEYV" target="_blank" className="bottomImgs a2"><img src={medium} alt="" className="bottomImgs2" /></a>
-      <a href="https://t.me/PIDAOfinance" target="_blank" className="bottomImgs a"><img src={img1_4} alt="" className="bottomImgs2" /></a>
-      {/* <a href="https://discord.com/invite/hPRwxePEYV" target="_blank" className="bottomImgs a"><img src={DiscordImg} alt="" className="bottomImgs2" /></a> */}
+      <a href="https://t.me/PepeDAOOfficial" target="_blank" className="bottomImgs a"><img src={img1_4} alt="" className="bottomImgs2" /></a>
     </div>
     {menu ?
       <div className="moban" onClick={() => ShowhideClick()} >
         <div className="CaiDanlieBiao">
           <img src={Logoimg} alt="" className="logo2" />
-          <div className="lis2"><a target="_blank" className="a" href="https://pidao.gitbook.io/homepage/whitepapers/pidao-pro">PIDAO Pro</a></div>
+          <div className="lis2"><a target="_blank" className="a" href="https://PepeDAO.gitbook.io/homepage/whitepapers/PepeDAO-pro">PepeDAO Pro</a></div>
           <div className="lis2"><a className="a" href="/stake">Stake</a></div>
           <div className="lis2"><a className="a" href="/bonds">Bond</a></div>
-          <div className="lis2"><a target="_blank" className="a" href="https://pidao.gitbook.io/homepage/pidao-finance/faqs">FAQs</a></div>
-          <div className="lis2"><a target="_blank" className="a" href="https://pidao.gitbook.io/homepage/community/governance">Get Involved</a></div>
+          <div className="lis2"><a target="_blank" className="a" href="https://PepeDAO.gitbook.io/homepage/PepeDAO-finance/faqs">FAQs</a></div>
+          <div className="lis2"><a target="_blank" className="a" href="https://PepeDAO.gitbook.io/homepage/community/governance">Get Involved</a></div>
           {/* <a href="https://github.com/peckshield/publications/blob/master/audit_reports/PeckShield-Audit-Report-OlympusDAO-v1.0.pdf" target="_blank" ><img src={ShenJiImg1} alt="" className="shenji2" /></a>
           <a href="https://omniscia.io/olympusdao-algorithmic-currency-protocol/" target="_blank"><img src={ShenJiImg2} alt="" className="shenji3" /></a> */}
         </div>
@@ -350,7 +348,7 @@ function Inp_Box({idoBalance,busdAmount}) {
       <input type="text" placeholder={`${busdAmount}BUSD`} disabled className="InpStyle" />
     </div>
     <div className="Content_Box3">
-    PIDAO project will launch on 12:00 8th Nov. 2021, you will be able to claim your PID token manually on the website. 
+    {/* PepeDAO project will launch on 12:00 8th Nov. 2021, you will be able to claim your PID token manually on the website.  */}
     </div>
 
     {address && hasAllowance() ? (
