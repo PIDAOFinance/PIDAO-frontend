@@ -7,7 +7,7 @@ import { Paper, Box, Typography, Button } from "@material-ui/core";
 import { Skeleton } from "@material-ui/lab";
 
 import { trim, subtractDates } from "src/helpers";
-import TuImg from '../../assets/tu.png'
+import TuImg from '../../assets/tu2.png'
 import Tu2Img from '../../assets/tu2.png'
 
 export const PoolPrize = () => {
